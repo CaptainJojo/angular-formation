@@ -1,0 +1,32 @@
+<html ng-app="mofafegoli">
+<head>
+    <style>
+        .allumetoi{
+            background-color: gold;
+        }
+    </style>
+</head>
+    <body ng-controller="mofafegoliController">
+
+        <table>
+
+            <tr><td></td><td ng-repeat="vowel in vowels">{{vowel}}</td></tr>
+
+            <tr ng-repeat="consonant in consonants">
+                <td>{{consonant}}</td>
+                <!-- {{$parent.$index}}{{$index}} -->
+                <td ng-repeat="vowel in vowels" ng-class="{allumetoi: allumetoi(consonant + vowel)}">{{convert(consonant + vowel)}}</td>
+            </tr>
+        </table>
+
+
+        <div>
+            <input type="text" placeholder="Tape ici" ng-model="convertName"/>
+            <h1>{{convert(convertName)}}</h1>
+        </div>
+
+        <script src="mofafegoli.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
