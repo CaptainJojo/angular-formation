@@ -1,4 +1,4 @@
-var app = angular.module('jmail.average', []);
+var app = angular.module('jmail');
 
 app.filter('average', function() {
     return function(input) {

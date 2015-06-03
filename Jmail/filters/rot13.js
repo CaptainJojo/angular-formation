@@ -1,4 +1,4 @@
-var app = angular.module('jmail.rot13', []);
+var app = angular.module('jmail');
 
 app.filter('rot13', function() {
     return function(s) {

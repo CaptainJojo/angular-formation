@@ -1,4 +1,4 @@
-var app = angular.module('jmail.pluck', []);
+var app = angular.module('jmail');
 
 app.filter('pluck', function() {
     return function(input, param) {

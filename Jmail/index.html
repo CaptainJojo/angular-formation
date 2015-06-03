@@ -3,104 +3,30 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
 </head>
-    <body ng-controller="generateDataController">
-        Search: <input ng-model="filterBy.$">
-        <table style="overflow:scroll;height:500px;">
-            <tr>
-                <td ng-click="orderby('id')">id <span ng-click="orderby('id')" ng-show="!reverse && col == 'id'">▲</span><span ng-click="orderby('id')" ng-show="reverse && col == 'id'">▼</span></td>
-                <td ng-click="orderby('subject')">subject <span ng-click="orderby('subject')" ng-show="!reverse && col == 'subject'">▲</span><span ng-click="orderby('subject')" ng-show="reverse && col == 'subject'">▼</span></td>
-                <td ng-click="orderby('to')">to <span ng-click="orderby('to')" ng-show="!reverse && col == 'to'">▲</span><span ng-click="orderby('to')" ng-show="reverse && col == 'to'">▼</span></td>
-                <td ng-click="orderby('from')">from <span ng-click="orderby('from')" ng-show="!reverse && col == 'from'">▲</span><span ng-click="orderby('from')" ng-show="reverse && col == 'from'">▼</span></td>
-                <td ng-click="orderby('body')">body <span ng-click="orderby('body')" ng-show="!reverse && col == 'body'">▲</span><span ng-click="orderby('body')" ng-show="reverse && col == 'body'">▼</span></td>
-                <td ng-click="orderby('count')">body <span ng-click="orderby('count')" ng-show="!reverse && col == 'count'">▲</span><span ng-click="orderby('count')" ng-show="reverse && col == 'count'">▼</span></td>
-                <td>read</td>
-                <td>labels</td>
-            </tr>
-            <tr>
-                <td>
-                    <input ng-model="filterBy.id" />
-                </td>
-                <td>
-                    <input ng-model="filterBy.subject"/>
-                </td>
-                <td>
-                    <input ng-model="filterBy.to" type="email"/>
-                </td>
-                <td>
-                    <input ng-model="filterBy.from" type="email"/>
-                </td>
-                <td>
-                    <input ng-model="filterBy.body" />
-                </td>
-                <td>
-                    <input ng-model="filterBy.count"/>
-                </td>
-                <td>
-                    <select ng-model="filterBy.read">
-                        <option value="">Rien</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                </td>
-            </tr>
-            <tr ng-repeat="mail in data  | orderBy:col:reverse | filter:filterBy">
-                <td ng-click="clickedMail(mail)">
-                    {{mail.id}}
-                </td>
-                <td>
-                    {{mail.subject}}
-                </td>
-                <td>
-                    {{mail.to}}
-                </td>
-                <td>
-                    {{mail.from}}
-                </td>
-                <td>
-                    {{mail.body | rot13}}
-                </td>
-                <td>
-                    {{mail.count}}
-                </td>
-                <td>
-                    {{mail.read}}
-                </td>
-                <td ng-repeat="label in mail.labels track by $index">
-                    {{label}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                    {{ data | orderBy:col:reverse | filter:filterBy | pluck:'count' | average }}
-                </td>
-                <td>
-                </td>
-            </tr>
-        </table>
+    <style>
+        form input.ng-valid {background-color: green}
+        form input.ng-invalid {background-color: gold}
+    </style>
+    <body>
 
+        <ng-include src="'form.html'"></ng-include>
 
-        <div style="background-color:gold">
-            {{clickMsg}}
-        </div>
+        <ng-include src="'table.html'"></ng-include>
+
+        <ng-include src="'detail.html'"></ng-include>
 
         <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
         <script src="bower_components/chance/chance.js"></script>
-        <script src="controllers/generateDataController.js"></script>
+        <script src="app.js"></script>
 
         <script src="filters/rot13.js"></script>
         <script src="filters/average.js"></script>
         <script src="filters/pluck.js"></script>
+        <script src="controllers/generateDataFormController.js"></script>
+        <script src="controllers/generateDataDetailController.js"></script>
+        <script src="controllers/generateDataTableController.js"></script>
+        <script src="services/generateDataService.js"></script>
 
-        <script src="app.js"></script>
     </body>
 </html>

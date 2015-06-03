@@ -1,14 +1,6 @@
-var app = angular.module('jmail.generateDataController', []);
+var app = angular.module('jmail');
 
-app.controller('generateDataController', function($scope) {
-
-    $scope.col = 'id';
-    $scope.reverse = true;
-    $scope.orderby = function(col) {
-        $scope.col = col;
-        $scope.reverse = !$scope.reverse;
-    };
-
+app.factory('generateDataService', function() {
     var generateData = function (nb) {
         var data = [];
 
@@ -35,10 +27,26 @@ app.controller('generateDataController', function($scope) {
         return data;
     };
 
-    $scope.clickMsg = "";
-    $scope.clickedMail = function (mail) {
-        $scope.clickMsg = mail.body;
-    };
+    var data = generateData(5);
 
-    $scope.data = generateData(5);
+    return {
+        getData: function() {
+            return data;
+        },
+        saveData: function(jmail) {
+            data.push(
+                {
+                    'id': chance.integer(),
+                    'subject': jmail.subject,
+                    'to': jmail.to,
+                    'from': chance.email(),
+                    'body': jmail.body,
+                    'read': chance.bool(),
+                    'count': chance.natural({min: 1, max: 20})
+                }
+            );
+
+            return data;
+        },
+    };
 });
