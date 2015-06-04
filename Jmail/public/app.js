@@ -1,4 +1,4 @@
-var app = angular.module('jmail', ['ngMessages', 'ui.router'])
+var app = angular.module('jmail', ['ngMessages', 'ui.router', 'ngMd5'])
 .config(function ($logProvider) {
     $logProvider.debugEnabled(true);
 })

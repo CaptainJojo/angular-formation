@@ -12,7 +12,7 @@
 
 
         <label for="subject">Subject<input type="text" name="subject" required id="subject" ng-model="jmail.subject" placeholder="{{jmail.holdersubject}}"/></label>
-        <label for="to">To<input type="email" name="to" required id="to" ng-model="jmail.to" ng-minlength='6' placeholder="{{jmail.holderto}}"/></label>
+        <label for="to">To<input  forbiden='test@yopmail.com' type="email" name="to" required id="to" ng-model="jmail.to" ng-minlength='6' placeholder="{{jmail.holderto}}"/></label>
             <div ng-messages="jmailform.to.$error" ng-if="jmailform.to.$touched">
                 <div  ng-messages-include="error-messages"></div>
             </div>

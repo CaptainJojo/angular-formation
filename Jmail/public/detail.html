@@ -1,8 +1,10 @@
 <div style="background-color:gold" ng-controller="generateDataDetailController">
+    <gravatar email="{{email}}" size=200></gravatar>
     <table>
         <tr ng-repeat="mail in messages" >
             <td>
                 {{mail.snippet}}
+
             </td>
         </tr>
     </table>

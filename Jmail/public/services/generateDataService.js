@@ -44,6 +44,16 @@ app.factory('generateDataService', function($http, $log, $q, gapiService) {
                 });
             */
         },
+        getEmail: function(id) {
+            return gapiService.execGmail('threads', 'get', { userId: 'me', id: id})
+                .then(function(thread) {
+                    var emailFrom = _.find(thread.messages[0].payload.headers, { name: 'From'});
+                    var split1 = emailFrom.value.split('<');
+                    var split2 = split1[1].split('>');
+
+                    return split2[0];
+                });
+        },
         saveData: function(jmail) {
             return $http.post('/mails', {
                     'id': chance.natural(),
