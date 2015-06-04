@@ -1,0 +1,32 @@
+<html ng-app="jmail">
+<meta charset="UTF-8">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+</head>
+    <style>
+        form input.ng-valid {background-color: green}
+        form input.ng-invalid {background-color: gold}
+    </style>
+    <body>
+
+        <ng-include src="'form.html'"></ng-include>
+
+        <ng-include src="'table.html'"></ng-include>
+
+        <ng-include src="'detail.html'"></ng-include>
+
+        <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/chance/chance.js"></script>
+        <script src="app.js"></script>
+
+        <script src="filters/rot13.js"></script>
+        <script src="filters/average.js"></script>
+        <script src="filters/pluck.js"></script>
+        <script src="controllers/generateDataFormController.js"></script>
+        <script src="controllers/generateDataDetailController.js"></script>
+        <script src="controllers/generateDataTableController.js"></script>
+        <script src="services/generateDataService.js"></script>
+
+    </body>
+</html>
