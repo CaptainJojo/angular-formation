@@ -1,0 +1,26 @@
+<div ng-controller="generateDataTableController">
+Search: <input ng-model="filterBy.$">
+<table style="overflow:scroll;height:500px;">
+    <tr>
+        <td ng-click="orderby('id')">id <span ng-click="orderby('id')" ng-show="!reverse && col == 'id'">▲</span><span ng-click="orderby('id')" ng-show="reverse && col == 'id'">▼</span></td>
+        <td ng-click="orderby('snippet')">subject <span ng-click="orderby('snippet')" ng-show="!reverse && col == 'snippet'">▲</span><span ng-click="orderby('snippet')" ng-show="reverse && col == 'snippet'">▼</span></td>
+            </tr>
+    <tr>
+        <td>
+            <input ng-model="filterBy.id" />
+        </td>
+        <td>
+            <input ng-model="filterBy.snippet"/>
+        </td>
+    </tr>
+    <tr ng-repeat="mail in data  | orderBy:col:reverse | filter:filterBy">
+        <td ng-click="clickedMail(mail)">
+            {{mail.id}}
+        </td>
+        <td>
+            {{mail.snippet}}
+        </td>
+    </tr>
+</table>
+</div>
+<div ui-view></div>
