@@ -18,17 +18,24 @@ app.controller('generateDataFormController', function($scope, generateDataServic
         'body': ""
     };
 
-    $scope.reset = function() {
+/*    $scope.reset = function() {
         $scope.jmail = angular.copy($scope.master);
     };
-
-    $scope.save = function(form, jmail) {
+*/
+    $scope.saveMail = function(form, jmail) {
 
         if (form.$valid) {
 
-            $scope.data = generateDataService.saveData(jmail);
-            $scope.master = angular.copy(jmail);
-            $scope.reset();
+            generateDataService.saveData(jmail).then(function(res) {
+                generateDataService.getData()
+                    .then(function (res) {
+                        $scope.data = res;
+                    }).catch(function (err) {
+                        $log.error(err);
+                    });
+            });
+    //        $scope.master = angular.copy(jmail);
+    //        $scope.reset();
         }
 
 

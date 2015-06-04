@@ -2,6 +2,10 @@ var app = angular.module('jmail');
 
 app.filter('rot13', function() {
     return function(s) {
+        if (!s) {
+            return '';
+        }
+
         return (s = (s) ? s : this).split('').map(function(_)
           {
             if (!_.match(/[A-Za-z]/)) return _;

@@ -1,6 +1,6 @@
 <div  ng-controller="generateDataFormController">
 
-    <form name="jmailform" ng-submit="save(jmailform, jmail)" novalidate>
+    <form name="jmailform"  novalidate>
         <script type="text/ng-template" id="error-messages">
             <div ng-message="minlength">
                 Trop court comme Denis
@@ -17,6 +17,6 @@
                 <div  ng-messages-include="error-messages"></div>
             </div>
         <label for="body">Body<textarea type="text" name="body" id="body" ng-model="jmail.body"></textarea></label>
-        <input type="submit" ng-disabled='jmailform.$invalid'/>
+        <input type="submit" ng-disabled='jmailform.$invalid' ng-click="saveMail(jmailform, jmail)"/>
     </form>
 </div>
