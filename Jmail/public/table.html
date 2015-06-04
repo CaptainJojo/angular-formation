@@ -1,0 +1,31 @@
+<div ng-controller="generateDataTableController">
+
+
+
+    <input ng-model='size' ng-model-options='{debounce: 500}' />
+    <gravatar email="jalouz.j@gmail.com" size="{{size}}"></gravatar>
+
+Search: <input ng-model="filterBy.$">
+<table style="overflow:scroll;height:500px;">
+    <tr>
+        <td sortable sorter='sorter' field="id"></td>
+        <td sortable sorter='sorter' field="snippet"></td>    </tr>
+    <tr>
+        <td>
+            <input ng-model="filterBy.id" />
+        </td>
+        <td>
+            <input ng-model="filterBy.snippet"/>
+        </td>
+    </tr>
+    <tr ng-repeat="mail in data  | orderBy:sorter.col:sorter.reverse | filter:filterBy">
+        <td ng-click="clickedMail(mail)">
+            {{mail.id}}
+        </td>
+        <td>
+            {{mail.snippet}}
+        </td>
+    </tr>
+</table>
+</div>
+<div ui-view></div>

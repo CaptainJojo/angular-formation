@@ -1,0 +1,22 @@
+<div  ng-controller="generateDataFormController">
+
+    <form name="jmailform"  novalidate>
+        <script type="text/ng-template" id="error-messages">
+            <div ng-message="minlength">
+                Trop court comme Denis
+            </div>
+            <div ng-message="required">
+                Denis est obligatoire
+            </div>
+        </script>
+
+
+        <label for="subject">Subject<input type="text" name="subject" required id="subject" ng-model="jmail.subject" placeholder="{{jmail.holdersubject}}"/></label>
+        <label for="to">To<input  forbiden='test@yopmail.com' type="email" name="to" required id="to" ng-model="jmail.to" ng-minlength='6' placeholder="{{jmail.holderto}}"/></label>
+            <div ng-messages="jmailform.to.$error" ng-if="jmailform.to.$touched">
+                <div  ng-messages-include="error-messages"></div>
+            </div>
+        <label for="body">Body<textarea type="text" name="body" id="body" ng-model="jmail.body"></textarea></label>
+        <input type="submit" ng-disabled='jmailform.$invalid' ng-click="saveMail(jmailform, jmail)"/>
+    </form>
+</div>
