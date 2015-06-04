@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <input ng-model="query"/>
+        <div ng-bind="query">
+        </div>
+        <script>
+            var scope = new Scope();
+            $compile(document.body, scope);
+        </script>
+    </body>
+</html>
